@@ -1,7 +1,8 @@
+
 {
 	"swagger": "2.0",
 	"info": {
-		"version": "1.0.3",
+		"version": "1.0.4",
 		"title": "Cardtoken.io",
 		"description": "The Cardtoken.io API is build around REST. The API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.\n# Authentication\nIs conducted via basic auth scheme.\n"
 	},
