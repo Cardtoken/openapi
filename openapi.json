@@ -1,0 +1,535 @@
+{
+   "swagger": "2.0",
+   "info": {
+      "version": "1.0.0",
+      "title": "Cardtoken.io",
+      "description": "Card token web api."
+   },
+   "schemes": [
+      "https"
+   ],
+   "securityDefinitions": {
+      "basicAuth": {
+         "type": "basic",
+         "description": "xx"
+      }
+   },
+   "security": [
+      {
+         "basicAuth": []
+      }
+   ],
+   "consumes": [
+      "application/json"
+   ],
+   "produces": [
+      "application/json"
+   ],
+   "tags": [
+      {
+         "name": "card"
+      },
+      {
+         "name": "gateway"
+      },
+      {
+         "name": "merchant"
+      },
+      {
+         "name": "tenant"
+      },
+      {
+         "name": "token"
+      }
+   ],
+   "paths": {
+      "/tenant/": {
+         "post": {
+            "summary": "Create a tenant",
+            "description": "Create a new tenant.",
+            "tags": [
+               "tenant"
+            ],
+            "parameters": [
+               {
+                  "in": "body",
+                  "name": "tenant",
+                  "description": "XX",
+                  "required": true,
+                  "schema": {
+                     "$ref": "#/definitions/createTenantRequest"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/tenant"
+                  }
+               },
+               "400": {
+                  "$ref": "#/responses/BadRequest"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      },
+      "/token/": {
+         "get": {
+            "summary": "/token/",
+            "description": "Returns a list of tokens.",
+            "tags": [
+               "token"
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/tokenCollection"
+                  }
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      },
+      "/token/{token}/": {
+         "get": {
+            "summary": "/token/{token}",
+            "description": "Returns a token by handle.",
+            "tags": [
+               "token"
+            ],
+            "parameters": [
+               {
+                  "name": "token",
+                  "in": "path",
+                  "description": "Token of card.",
+                  "required": true,
+                  "type": "string"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/token"
+                  }
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      },
+      "/card/": {
+         "get": {
+            "summary": "/card/",
+            "description": "Returns a list of cards.",
+            "tags": [
+               "card"
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         },
+         "post": {
+            "summary": "/card/",
+            "description": "Post a card or token.",
+            "tags": [
+               "card"
+            ],
+            "security": [
+               {
+                  "basicAuth": []
+               }
+            ],
+            "parameters": [
+               {
+                  "in": "body",
+                  "name": "card",
+                  "description": "xx",
+                  "required": true,
+                  "schema": {
+                     "$ref": "#/definitions/card"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/token"
+                  }
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      },
+      "/merchant/": {
+         "get": {
+            "summary": "/merchant/",
+            "description": "Returns a list of merchants.",
+            "tags": [
+               "merchant"
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/merchantCollection"
+                  }
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         },
+         "post": {
+            "summary": "/merchant/",
+            "description": "Creates a new merchant",
+            "tags": [
+               "merchant"
+            ],
+            "parameters": [
+               {
+                  "in": "body",
+                  "name": "merchant",
+                  "description": "xx",
+                  "required": true,
+                  "schema": {
+                     "$ref": "#/definitions/merchant"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      },
+      "/gateway/": {
+         "post": {
+            "summary": "/gateway/",
+            "description": "Creates a new gateway",
+            "tags": [
+               "gateway"
+            ],
+            "parameters": [
+               {
+                  "in": "body",
+                  "name": "gateway",
+                  "description": "xx",
+                  "required": true,
+                  "schema": {
+                     "$ref": "#/definitions/gateway"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK",
+                  "schema": {
+                     "$ref": "#/definitions/gateway"
+                  }
+               },
+               "401": {
+                  "$ref": "#/responses/Unauthorized"
+               },
+               "500": {
+                  "$ref": "#/responses/InternalServerError"
+               }
+            }
+         }
+      }
+   },
+   "definitions": {
+      "tokenCollection": {
+         "type": "object",
+         "properties": {
+            "collection": {
+               "type": "array",
+               "description": "Array of token.",
+               "allOf": [
+                  {
+                     "$ref": "#/definitions/token"
+                  }
+               ],
+               "items": {
+                  "$ref": "#/definitions/token"
+               }
+            }
+         }
+      },
+      "token": {
+         "type": "object",
+         "properties": {
+            "id": {
+               "type": "string",
+               "description": "Guid."
+            },
+            "cardholder": {
+               "type": "string",
+               "description": "Cardholder name"
+            },
+            "token": {
+               "type": "string",
+               "description": "token of the card"
+            },
+            "exp_month": {
+               "type": "integer"
+            },
+            "exp_year": {
+               "type": "integer"
+            },
+            "maskedcard": {
+               "type": "string",
+               "description": "Masked card 4134xxxxxxxx1234"
+            },
+            "brand": {
+               "type": "string",
+               "description": "Brand of card, example VISA."
+            },
+            "fingerprint": {
+               "type": "string"
+            },
+            "metadata": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/metadata"
+               }
+            },
+            "createddate": {
+               "type": "string",
+               "description": "Date in UTC format. yyyy-mm-dd",
+               "default": "today",
+               "pattern": "yyyy-mm-dd",
+               "title": "created date"
+            }
+         }
+      },
+      "metadata": {
+         "type": "object",
+         "properties": {
+            "key": {
+               "type": "string"
+            },
+            "value": {
+               "type": "string"
+            }
+         }
+      },
+      "tenant": {
+         "type": "object",
+         "properties": {
+            "id": {
+               "type": "string",
+               "description": "Guid"
+            },
+            "name": {
+               "type": "string"
+            },
+            "email": {
+               "type": "string"
+            },
+            "apiKey": {
+               "type": "string"
+            }
+         }
+      },
+      "card": {
+         "type": "object",
+         "properties": {
+            "id": {
+               "type": "string",
+               "description": "Guid"
+            },
+            "token": {
+               "type": "string",
+               "description": "X",
+               "pattern": "XXXXXXXXXXX"
+            },
+            "tokengateway": {
+               "type": "string",
+               "description": "X"
+            },
+            "cardholder": {
+               "type": "string",
+               "description": "Cardholder name"
+            },
+            "number": {
+               "type": "string"
+            },
+            "exp_month": {
+               "type": "integer"
+            },
+            "exp_year": {
+               "type": "integer"
+            },
+            "cvc": {
+               "type": "string",
+               "description": "security number.",
+               "minLength": 3,
+               "maxLength": 4
+            },
+            "metadata": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/metadata"
+               }
+            },
+            "createddate": {
+               "type": "string",
+               "description": "Date in UTC format. yyyy-mm-dd",
+               "default": "today",
+               "pattern": "yyyy-mm-dd",
+               "title": "created date"
+            }
+         }
+      },
+      "merchantCollection": {
+         "type": "object",
+         "properties": {
+            "collection": {
+               "type": "array",
+               "description": "Array of merchant.",
+               "allOf": [
+                  {
+                     "$ref": "#/definitions/merchant"
+                  }
+               ],
+               "items": {
+                  "$ref": "#/definitions/merchant"
+               }
+            }
+         }
+      },
+      "merchant": {
+         "type": "object",
+         "properties": {
+            "id": {
+               "type": "string",
+               "description": "Guid"
+            },
+            "name": {
+               "type": "string"
+            },
+            "publickey": {
+               "type": "string",
+               "description": "Key used for handling cards online using cardtoken.js."
+            },
+            "privatekey": {
+               "type": "string",
+               "description": "API key. Not shareable."
+            },
+            "createddate": {
+               "type": "string",
+               "description": "Date in UTC format. yyyy-mm-dd",
+               "default": "today",
+               "pattern": "yyyy-mm-dd",
+               "title": "created date"
+            }
+         }
+      },
+      "createTenantRequest": {
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string"
+            },
+            "email": {
+               "type": "string"
+            }
+         }
+      },
+      "gateway": {
+         "type": "object",
+         "example": {
+            "name": "test",
+            "gatewaytype": "test"
+         },
+         "properties": {
+            "id": {
+               "type": "string",
+               "description": "Guid"
+            },
+            "name": {
+               "type": "string"
+            },
+            "gatewaytype": {
+               "type": "string"
+            },
+            "createddate": {
+               "type": "string",
+               "description": "Date in UTC format. yyyy-mm-dd",
+               "default": "today",
+               "pattern": "yyyy-mm-dd",
+               "title": "created date"
+            }
+         }
+      }
+   },
+   "responses": {
+      "NotFound": {
+         "description": "The specified resource was not found."
+      },
+      "BadRequest": {
+         "description": "A parameter of required query is not provided or validation failed."
+      },
+      "NoContent": {
+         "description": "Resource updated/deleted successfully."
+      },
+      "InternalServerError": {
+         "description": "An error was unhandled on the server.",
+         "examples": {
+            "application/json": {
+               "message": "string"
+            }
+         }
+      },
+      "Unauthorized": {
+         "description": "Unauthorized access. Please verify the API key and permission scope.",
+         "headers": {
+            "authorization": {
+               "type": "string",
+               "description": "Basic."
+            }
+         }
+      }
+   },
+   "host": "virtserver.swaggerhub.com",
+   "basePath": "/cloudfy/cardtoken/1.0.0"
+}
