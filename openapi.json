@@ -1,7 +1,7 @@
 {
 	"swagger": "2.0",
 	"info": {
-		"version": "1.0.2",
+		"version": "1.0.3",
 		"title": "Cardtoken.io",
 		"description": "The Cardtoken.io API is build around REST. The API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.\n# Authentication\nIs conducted via basic auth scheme.\n"
 	},
@@ -290,11 +290,6 @@
 				"collection": {
 					"type": "array",
 					"description": "Array of token.",
-					"allOf": [
-						{
-							"$ref": "#/definitions/token"
-						}
-					],
 					"items": {
 						"$ref": "#/definitions/token"
 					}
